@@ -80,13 +80,13 @@ public class BubbleChatFragment extends QiscusBaseChatFragment {
 
         //Simulate send custom survey
         button_send_survey.setOnClickListener(v -> {
-            sendSticker();
+            sendSurvey();
             mAddPanel.setVisibility(View.GONE);
         });
 
     }
 
-    private void sendSticker() {
+    private void sendSurvey() {
         String message = "Survey Qiscus";
         JSONObject payload = new JSONObject();
         try {
