@@ -18,8 +18,8 @@ import tech.uzi.com.customuichat.R;
  */
 
 public class BubbleChatAdapter extends QiscusChatAdapter {
-    private static final int TYPE_STICKER_ME = 23323;
-    private static final int TYPE_STICKER_OTHER = 23324;
+    private static final int TYPE_SURVEY = 23323;
+    private static final int TYPE_SURVEY_OTHERS = 23324;
 
     public BubbleChatAdapter(Context context, boolean groupChat) {
         super(context, groupChat);
@@ -30,7 +30,7 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
         try {
             JSONObject payload = new JSONObject(qiscusComment.getExtraPayload());
             if (payload.optString("type").equals("survey")) {
-                return qiscusComment.getSenderEmail().equals(qiscusAccount.getEmail()) ? TYPE_STICKER_ME : TYPE_STICKER_OTHER;
+                return qiscusComment.getSenderEmail().equals(qiscusAccount.getEmail()) ? TYPE_SURVEY : TYPE_SURVEY_OTHERS;
             }
         } catch (JSONException ignored) {
 
@@ -41,9 +41,9 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
     @Override
     protected int getItemResourceLayout(int viewType) {
         switch (viewType) {
-            case TYPE_STICKER_ME:
+            case TYPE_SURVEY:
                 return R.layout.item_message_survey;
-            case TYPE_STICKER_OTHER:
+            case TYPE_SURVEY_OTHERS:
                 return R.layout.item_message_survey;
             default:
                 return super.getItemResourceLayout(viewType);
@@ -53,8 +53,8 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
     @Override
     public QiscusBaseMessageViewHolder<QiscusComment> onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case TYPE_STICKER_ME:
-            case TYPE_STICKER_OTHER:
+            case TYPE_SURVEY:
+            case TYPE_SURVEY_OTHERS:
                 return new BubbleMessageViewHolder(getView(parent, viewType), itemClickListener, longItemClickListener,context);
             default:
                 return super.onCreateViewHolder(parent, viewType);
