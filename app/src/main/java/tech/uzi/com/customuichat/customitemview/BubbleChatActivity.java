@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.qiscus.nirmana.Nirmana;
 import com.qiscus.sdk.Qiscus;
@@ -52,6 +53,7 @@ public class BubbleChatActivity extends QiscusBaseChatActivity {
         tvSubtitle = (TextView) findViewById(R.id.tv_subtitle);
         ivAvatar = (QiscusCircularImageView) findViewById(R.id.profile_picture);
         findViewById(R.id.back).setOnClickListener(v -> onBackPressed());
+        ivAvatar.setOnClickListener(v -> Toast.makeText(this, "Click Image", Toast.LENGTH_SHORT).show());
         setSupportActionBar(toolbar);
     }
 
