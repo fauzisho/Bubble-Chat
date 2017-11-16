@@ -1,5 +1,6 @@
 package tech.uzi.com.customuichat.customitemview;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.qiscus.sdk.util.QiscusDateUtil;
 
 import java.util.Date;
 
+import tech.uzi.com.customuichat.ChatDetailActivity;
 import tech.uzi.com.customuichat.R;
 
 /**
@@ -34,6 +36,7 @@ public class BubbleChatActivity extends QiscusBaseChatActivity {
     protected QiscusCircularImageView ivAvatar;
 
     protected QiscusAccount qiscusAccount;
+    private String textTitle;
 
     public static Intent generateIntent(Context context, QiscusChatRoom qiscusChatRoom) {
         Intent intent = new Intent(context, BubbleChatActivity.class);
@@ -53,9 +56,16 @@ public class BubbleChatActivity extends QiscusBaseChatActivity {
         tvSubtitle = (TextView) findViewById(R.id.tv_subtitle);
         ivAvatar = (QiscusCircularImageView) findViewById(R.id.profile_picture);
         findViewById(R.id.back).setOnClickListener(v -> onBackPressed());
-        ivAvatar.setOnClickListener(v -> Toast.makeText(this, "Click Image", Toast.LENGTH_SHORT).show());
+        // TODO: 16/11/17 click image chatroom
+        ivAvatar.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ChatDetailActivity.class);
+            intent.putExtra("name", textTitle);
+            intent.putExtra("url", qiscusChatRoom.getAvatarUrl());
+            startActivity(intent);
+        });
         setSupportActionBar(toolbar);
     }
+
 
     @Override
     protected QiscusBaseChatFragment onCreateChatFragment() {
@@ -72,6 +82,7 @@ public class BubbleChatActivity extends QiscusBaseChatActivity {
     protected void binRoomData() {
         super.binRoomData();
         tvTitle.setText(qiscusChatRoom.getName());
+        textTitle = qiscusChatRoom.getName();
         if (!qiscusChatRoom.getSubtitle().isEmpty()) {
             tvSubtitle.setText(qiscusChatRoom.getSubtitle());
             tvSubtitle.setVisibility(qiscusChatRoom.getSubtitle().isEmpty() ? View.GONE : View.VISIBLE);
