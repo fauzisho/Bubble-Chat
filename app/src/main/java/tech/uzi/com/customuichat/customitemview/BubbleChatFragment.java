@@ -25,6 +25,7 @@ import com.qiscus.sdk.ui.view.QiscusMentionSuggestionView;
 import com.qiscus.sdk.ui.view.QiscusRecyclerView;
 import com.qiscus.sdk.ui.view.QiscusReplyPreviewView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,6 +41,7 @@ public class BubbleChatFragment extends QiscusBaseChatFragment {
     private ImageView mAttachButton;
     private LinearLayout mAddPanel;
     private ImageView button_send_survey;
+    private ImageView button_send_list;
 
     public static BubbleChatFragment newInstance(QiscusChatRoom qiscusChatRoom) {
         BubbleChatFragment fragment = new BubbleChatFragment();
@@ -69,6 +71,8 @@ public class BubbleChatFragment extends QiscusBaseChatFragment {
         mAttachButton = (ImageView) view.findViewById(R.id.button_attach);
         mAddPanel = (LinearLayout) view.findViewById(R.id.add_panel);
         button_send_survey = (ImageView) view.findViewById(R.id.button_send_survey);
+        button_send_list = (ImageView) view.findViewById(R.id.button_send_list);
+
         mAttachButton.setOnClickListener(v -> {
             if (mAddPanel.getVisibility() == View.GONE) {
                 mAddPanel.startAnimation(animation);
@@ -84,6 +88,43 @@ public class BubbleChatFragment extends QiscusBaseChatFragment {
             mAddPanel.setVisibility(View.GONE);
         });
 
+        button_send_list.setOnClickListener(v -> {
+            sendList();
+            mAddPanel.setVisibility(View.GONE);
+        });
+    }
+
+    private void sendList() {
+        //data manual (bisa dari backend)
+        String message = "List Qiscus";
+        JSONObject payloadList = new JSONObject();
+        JSONArray payloadLists = new JSONArray();
+        JSONObject payload = new JSONObject();
+
+        try {
+            payloadLists.put(payloadList);
+            payloadList.put("name", "find me");
+            payloadLists.put(payloadList);
+            payloadList.put("name", "find me");
+            payloadLists.put(payloadList);
+            payloadList.put("name", "find me");
+            payloadLists.put(payloadList);
+            payloadList.put("name", "find me");
+            payloadLists.put(payloadList);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            payload.put("data", payloadLists);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        QiscusComment comment = QiscusComment.generateCustomMessage(message, "qiscuslist", payload,
+                qiscusChatRoom.getId(), qiscusChatRoom.getLastTopicId());
+        sendQiscusComment(comment);
     }
 
     private void sendSurvey() {

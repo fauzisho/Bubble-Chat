@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2016 Qiscus.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
@@ -37,7 +35,7 @@
             android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_qiscus_chat_empty"/>
+            android:src="@drawable/ic_qiscus_chat_empty" />
 
         <TextView
             android:id="@+id/empty_chat_title"
@@ -48,7 +46,7 @@
             android:text="@string/qiscus_welcome"
             android:textColor="@color/qiscus_divider"
             android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/empty_chat_desc"
@@ -56,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/qiscus_desc_empty_chat"
-            android:textColor="@color/qiscus_divider"/>
+            android:textColor="@color/qiscus_divider" />
     </LinearLayout>
 
     <RelativeLayout
@@ -78,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="64dp"/>
+                    android:paddingBottom="64dp" />
             </android.support.v4.widget.SwipeRefreshLayout>
 
             <TextView
@@ -93,7 +91,7 @@
                 android:text="@string/qiscus_new_message"
                 android:textColor="@color/qiscus_white"
                 android:textSize="14sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </FrameLayout>
 
         <LinearLayout
@@ -112,6 +110,21 @@
             android:visibility="gone">
 
             <ImageView
+                android:id="@+id/button_send_list"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bt_qiscus_selector_grey"
+                android:paddingEnd="1dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:paddingStart="1dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_qiscus_copy"
+                android:tint="@color/qiscus_secondary_text" />
+
+            <ImageView
                 android:id="@+id/button_send_survey"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -124,7 +137,7 @@
                 android:paddingStart="1dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/ic_library"
-                android:tint="@color/qiscus_secondary_text"/>
+                android:tint="@color/qiscus_secondary_text" />
 
             <ImageView
                 android:id="@+id/button_add_image"
@@ -139,7 +152,7 @@
                 android:paddingStart="2dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/ic_qiscus_add_image"
-                android:tint="@color/qiscus_secondary_text"/>
+                android:tint="@color/qiscus_secondary_text" />
 
             <ImageView
                 android:id="@+id/button_pick_picture"
@@ -154,7 +167,7 @@
                 android:paddingStart="1dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/ic_qiscus_pick_picture"
-                android:tint="@color/qiscus_secondary_text"/>
+                android:tint="@color/qiscus_secondary_text" />
 
             <ImageView
                 android:id="@+id/button_add_file"
@@ -169,7 +182,7 @@
                 android:paddingStart="1dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/ic_qiscus_add_file"
-                android:tint="@color/qiscus_secondary_text"/>
+                android:tint="@color/qiscus_secondary_text" />
 
             <ImageView
                 android:id="@+id/button_add_audio"
@@ -184,7 +197,7 @@
                 android:paddingStart="1dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/ic_qiscus_add_audio"
-                android:tint="@color/qiscus_secondary_text"/>
+                android:tint="@color/qiscus_secondary_text" />
 
         </LinearLayout>
 
@@ -207,7 +220,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/bt_qiscus_selector_grey"
                 android:padding="4dp"
-                android:src="@mipmap/ic_action_add"/>
+                android:src="@mipmap/ic_action_add" />
 
             <com.vanniktech.emoji.EmojiEditText
                 android:id="@+id/field_message"
@@ -223,7 +236,7 @@
                 android:padding="8dp"
                 android:textColor="@color/qiscus_primary_text"
                 android:textSize="16sp"
-                app:emojiSize="22sp"/>
+                app:emojiSize="22sp" />
 
             <ImageView
                 android:id="@+id/button_emoji"
@@ -234,14 +247,14 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/bt_qiscus_selector_grey"
                 android:padding="2dp"
-                android:src="@drawable/ic_qiscus_emot"/>
+                android:src="@drawable/ic_qiscus_emot" />
 
             <ImageView
                 android:id="@+id/button_send"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_qiscus_send_off"/>
+                android:src="@drawable/ic_qiscus_send_off" />
 
         </LinearLayout>
 
@@ -250,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -261,7 +274,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:indeterminate="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 
 </RelativeLayout>

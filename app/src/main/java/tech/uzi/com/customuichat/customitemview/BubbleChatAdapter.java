@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import tech.uzi.com.customuichat.R;
+import tech.uzi.com.customuichat.customitemview.viewholder.ListsMessageViewHolder;
 
 /**
  * Created by uzi on 10/10/17.
@@ -20,6 +21,8 @@ import tech.uzi.com.customuichat.R;
 public class BubbleChatAdapter extends QiscusChatAdapter {
     private static final int TYPE_SURVEY = 23323;
     private static final int TYPE_SURVEY_OTHERS = 23324;
+    private static final int TYPE_LIST = 33323;
+    private static final int TYPE_LIST_OTHERS = 33324;
 
     public BubbleChatAdapter(Context context, boolean groupChat) {
         super(context, groupChat);
@@ -31,6 +34,9 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
             JSONObject payload = new JSONObject(qiscusComment.getExtraPayload());
             if (payload.optString("type").equals("survey")) {
                 return qiscusComment.getSenderEmail().equals(qiscusAccount.getEmail()) ? TYPE_SURVEY : TYPE_SURVEY_OTHERS;
+            }
+            if (payload.optString("type").equals("qiscuslist")) {
+                return qiscusComment.getSenderEmail().equals(qiscusAccount.getEmail()) ? TYPE_LIST : TYPE_LIST_OTHERS;
             }
         } catch (JSONException ignored) {
 
@@ -45,6 +51,10 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
                 return R.layout.item_message_survey;
             case TYPE_SURVEY_OTHERS:
                 return R.layout.item_message_survey;
+            case TYPE_LIST:
+                return R.layout.item_message_list;
+            case TYPE_LIST_OTHERS:
+                return R.layout.item_message_list;
             default:
                 return super.getItemResourceLayout(viewType);
         }
@@ -55,7 +65,10 @@ public class BubbleChatAdapter extends QiscusChatAdapter {
         switch (viewType) {
             case TYPE_SURVEY:
             case TYPE_SURVEY_OTHERS:
-                return new BubbleMessageViewHolder(getView(parent, viewType), itemClickListener, longItemClickListener,context);
+                return new BubbleMessageViewHolder(getView(parent, viewType), itemClickListener, longItemClickListener, context);
+            case TYPE_LIST:
+            case TYPE_LIST_OTHERS:
+                return new ListsMessageViewHolder(getView(parent, viewType), itemClickListener, longItemClickListener, context);
             default:
                 return super.onCreateViewHolder(parent, viewType);
         }
