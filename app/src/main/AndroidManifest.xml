@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".customitemview.BubbleChatActivity" />
         <activity android:name=".ChatDetailActivity" />
+        <activity android:name=".customactivity.CostomActivity" />
     </application>
 
 </manifest>

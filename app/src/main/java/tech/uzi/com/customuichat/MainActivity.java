@@ -1,6 +1,7 @@
 package tech.uzi.com.customuichat;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,9 +10,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.qiscus.sdk.Qiscus;
+import com.qiscus.sdk.data.model.QiscusChatRoom;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import tech.uzi.com.customuichat.customactivity.CostomActivity;
 import tech.uzi.com.customuichat.customitemview.BubbleChatActivity;
 
 /**
@@ -22,6 +25,7 @@ import tech.uzi.com.customuichat.customitemview.BubbleChatActivity;
 public class MainActivity extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     private Button mLoginButton;
+    protected static final String CHAT_ROOM_DATA = "chat_room_data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Click Login please", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onActivityCustom(View view) {
+        Qiscus.buildChatRoomWith("zetra25@gmail.com")
+                .withTitle("zetra")
+                .build()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(qiscusChatRoom -> {
+                    Intent intent = new Intent(this, CostomActivity.class);
+                    intent.putExtra(CHAT_ROOM_DATA, qiscusChatRoom);
+                    startActivity(intent);
+                });
+
     }
 
     private void revertStickerChatConfig() {

@@ -21,5 +21,10 @@
         android:layout_height="wrap_content"
         android:onClick="customSurveyType"
         android:text="Custom Item View"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onActivityCustom"
+        android:text="Custom Item View"/>
 
 </LinearLayout>
