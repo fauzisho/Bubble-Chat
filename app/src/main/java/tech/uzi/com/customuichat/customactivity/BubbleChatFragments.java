@@ -57,11 +57,14 @@ public class BubbleChatFragments extends QiscusBaseChatFragment {
     @SuppressLint("ValidFragment")
     public BubbleChatFragments(QiscusChatRoom qiscusChatRoom) {
         this.qiscusChatRoom = qiscusChatRoom;
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(CHAT_ROOM_DATA, qiscusChatRoom);
+        setArguments(bundle);
     }
 
     @Override
     protected int getResourceLayout() {
-        return R.layout.fragment_sticker_chat;
+        return R.layout.fragment_sticker_chat_costom;
     }
 
     @Override

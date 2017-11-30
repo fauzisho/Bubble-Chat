@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.qiscus.sdk.data.model.QiscusChatRoom;
 
@@ -36,12 +35,6 @@ public class CostomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_costom_activity);
         qiscusChatRoom = getIntent().getExtras().getParcelable(CHAT_ROOM_DATA);
-        Toast.makeText(this, "" + qiscusChatRoom.getName(), Toast.LENGTH_SHORT).show();
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -52,9 +45,8 @@ public class CostomActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BubbleChatFragments(qiscusChatRoom), "ONE");
-        adapter.addFragment(new OneFragment(), "TWO");
-        adapter.addFragment(new OneFragment(), "THREE");
+        adapter.addFragment(new DescriptionFragment(), "Description");
+        adapter.addFragment(new BubbleChatFragments(qiscusChatRoom), "Chatting");
         viewPager.setAdapter(adapter);
     }
 

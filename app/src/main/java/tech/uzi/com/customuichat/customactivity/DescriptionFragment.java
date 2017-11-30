@@ -13,8 +13,8 @@ import tech.uzi.com.customuichat.R;
  * Email : fauzisholichin@gmail.com
  */
 
-public class OneFragment extends Fragment {
-    public OneFragment() {
+public class DescriptionFragment extends Fragment {
+    public DescriptionFragment() {
         // Required empty public constructor
     }
 
